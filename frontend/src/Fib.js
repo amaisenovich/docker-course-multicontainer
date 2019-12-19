@@ -14,7 +14,7 @@ class Fib extends PureComponent {
     }
 
     async fetchValues() {
-        const values = await axios.get('/api/values/current')
+        const values = (await axios.get('/api/values/current')).data
         this.setState(() => ({
             values
         }))
