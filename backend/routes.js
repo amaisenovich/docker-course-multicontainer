@@ -23,7 +23,7 @@ module.exports = {
             }
 
             redis.client.hset('values', index, 'NOT_CALCULATED');
-            redis.publisher('insert', index);
+            redis.publisher.publish('insert', index);
 
             db.query('INSERT INTO values(number) VALUES($1)', [index]);
 
