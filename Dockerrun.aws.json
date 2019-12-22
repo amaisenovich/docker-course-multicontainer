@@ -1,6 +1,6 @@
 {
     "AWSEBDockerrunVersion": 2,
-    "containerDefenitions": [
+    "containerDefinitions": [
         {
             "name": "frontend",
             "image": "amaisenovich/dcm-frontend",
