@@ -18,3 +18,15 @@ after_success:
     - docker push amaisenovich/dcm-frontend
     - docker push amaisenovich/dcm-nginx
     - docker push amaisenovich/dcm-worker
+
+deploy:
+    provider: elasticbeanstalk
+    region: "eu-central-1"
+    app: "dcm"
+    env: "Dcm-env"
+    bucket_name: "elasticbeanstalk-eu-central-1-830776640802"
+    bucket_path: "dcm"
+    on: 
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
