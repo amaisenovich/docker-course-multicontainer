@@ -61,7 +61,7 @@ class Fib extends PureComponent {
     render = () => (
         <div>
             <form onSubmit={this.onSubmit}>
-                <label>Enter your index:</label>
+                <label>Enter fibonacci number index:</label>
                 <br />
                 <input value={this.state.value} onChange={this.onChange} />
                 <button>Submit</button>
