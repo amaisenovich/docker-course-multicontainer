@@ -1,0 +1,20 @@
+sudo: required
+Services:
+    - docker
+
+before_install:
+    - docker build -t amaisenovich/dcm-frontend-test -f ./frontend/Dockerfile.dev ./frontend
+
+script:
+    - docker run -e CI=true amaisenovich/dcm-frontend-test npm test
+
+after_success:
+    - docker build -t amaisenovich/dcm-backend -f ./backend
+    - docker build -t amaisenovich/dcm-frontend -f ./frontend
+    - docker build -t amaisenovich/dcm-nginx -f ./nginx
+    - docker build -t amaisenovich/dcm-worker -f ./worker
+    - echo "$DOCKER_PAT" | docker login --username "$DOCKER_ID" --password-stdin
+    - docker push amaisenovich/dcm-backend
+    - docker push amaisenovich/dcm-frontend
+    - docker push amaisenovich/dcm-nginx
+    - docker push amaisenovich/dcm-worker
