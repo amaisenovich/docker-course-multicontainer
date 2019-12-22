@@ -9,10 +9,10 @@ script:
     - docker run -e CI=true amaisenovich/dcm-frontend-test npm test
 
 after_success:
-    - docker build -t amaisenovich/dcm-backend -f ./backend
-    - docker build -t amaisenovich/dcm-frontend -f ./frontend
-    - docker build -t amaisenovich/dcm-nginx -f ./nginx
-    - docker build -t amaisenovich/dcm-worker -f ./worker
+    - docker build -t amaisenovich/dcm-backend ./backend
+    - docker build -t amaisenovich/dcm-frontend ./frontend
+    - docker build -t amaisenovich/dcm-nginx ./nginx
+    - docker build -t amaisenovich/dcm-worker ./worker
     - echo "$DOCKER_PAT" | docker login --username "$DOCKER_ID" --password-stdin
     - docker push amaisenovich/dcm-backend
     - docker push amaisenovich/dcm-frontend
