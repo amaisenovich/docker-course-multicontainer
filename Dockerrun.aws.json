@@ -1,0 +1,37 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefenitions": [
+        {
+            "name": "frontend",
+            "image": "amaisenovich/dcm-frontend",
+            "hostname": "frontend",
+            "essential": false
+        },
+        {
+            "name": "backend",
+            "image": "amaisenovich/dcm-backend",
+            "hostname": "backend",
+            "essential": false
+        },
+        {
+            "name": "worker",
+            "image": "amaisenovich/dcm-worker",
+            "essential": false
+        },
+        {
+            "name": "nginx",
+            "image": "amaisenovich/dcm-nginx",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": "80",
+                    "containerPort": "80"
+                }
+            ],
+            "links": [
+                "frontend",
+                "backend"
+            ]
+        }
+    ]
+}
